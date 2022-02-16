@@ -108,7 +108,7 @@ public class SinglyLinkedList {
 		return found;
 	}
 	*/
-	private static Node KthToLast(Node first, int k) {
+	private static Node KthToLast(Node first, int k) { // 포인터사용
 		Node p1 = first;
 		Node p2 = first;
 		
