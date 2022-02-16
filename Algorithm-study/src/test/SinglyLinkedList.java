@@ -66,6 +66,7 @@ public class SinglyLinkedList {
 		Node found = KthToLast(head, k);
 		System.out.println(found.data);
 	}
+// 뒤에서부터 k번째 노드 찾기
 /*	
 	private static Node KthToLast(Node first, int k) { //재귀호출 사용하지 않고
 		Node n = first;
@@ -82,7 +83,7 @@ public class SinglyLinkedList {
 	}
 	*/
 	/*
-	private static int KthToLast(Node n, int k, Reference r) { //재귀호출 사용(값 출력)
+	private static int KthToLast(Node n, int k) { //재귀호출 사용(값 출력)
 		if (n == null) {
 			return 0;
 		}
