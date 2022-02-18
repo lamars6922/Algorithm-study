@@ -59,10 +59,31 @@ class LinkedList {
 		}
 	}
 
-	public Node getFirst() {
+	Node getFirst() {
 		return header.next;
 	}
 	
+	Node get(int k) {
+		Node n = header;
+		int count = 0;
+		
+		while (n.next != null) {
+			count++;
+			n = n.next;
+		}
+	
+		n = header;
+		
+		if(count < k) {
+			n = null;
+			return n;
+		} else {
+			for(int i = 0; i < k; i++) {
+				n = n.next;
+			}
+			return n;
+		}
+	}
 }
 
 class Reference {
@@ -80,6 +101,8 @@ public class LinkedListNode {
 		ll.retrieve();
 //		ll.delete(1);
 //		ll.retrieve();
+		deleteNode(ll.get(2));
+		ll.retrieve();
 		
 //		int k = 2;
 //		Node kth = KthToLast(ll.getFirst(), k);
@@ -88,16 +111,25 @@ public class LinkedListNode {
 //		int k = 2;
 //		KthToLast(head, k);
 ///////////////////////////////////////////////////////////////////////////////////////////		
-		int k = 4;
-		Reference r = new Reference();
-		Node found = KthToLast(ll.getFirst(), k, r);
-		System.out.println(found.data);
+//		int k = 4;
+//		Reference r = new Reference();
+//		Node found = KthToLast(ll.getFirst(), k, r);
+//		System.out.println(found.data);
 ///////////////////////////////////////////////////////////////////////////////////////////		
 //		int k = 2;
 //		Node found = KthToLast(ll.getFirst(), k);
 //		System.out.println(found.data);
 	}
-	
+	private static boolean deleteNode(Node n) { // 중간노드 삭제(처음과 끝노드는 삭제 불가라는데... 첫번째는 왜 못지우지?) 
+		if (n == null || n.next == null) {
+			return false;
+		}
+		Node Next = n.next;
+		n.data = Next.data;
+		n.next = Next.next;
+		
+		return true;
+	}
 	// 뒤에서부터 k번째 노드 찾기
 	/*	
 		private static Node KthToLast(Node first, int k) { //재귀호출 사용하지 않고
