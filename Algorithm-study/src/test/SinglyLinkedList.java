@@ -36,6 +36,42 @@ class Node {
 		}
 		System.out.println(n.data);
 	}
+	
+	Node get(int k) {
+		Node n = this;
+		int count = 0;
+		while(n.next != null) {
+			if(k == count) {
+				return n;
+			} else {
+				count++;
+				n = n.next;
+			}
+		}
+		return null;
+	}
+	
+	Node addNext(int d) {
+		Node end = new Node(d);
+		Node n = this;
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = end;
+		
+		return end;
+	}
+	
+	Node addNext(Node i) {
+		Node n = this;
+
+		while (n.next != null) {
+			n = n.next;
+		}
+		n.next = i;
+		
+		return i;
+	}
 }
 
 public class SinglyLinkedList {
