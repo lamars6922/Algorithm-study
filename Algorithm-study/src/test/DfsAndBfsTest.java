@@ -92,6 +92,35 @@ class Graph {
 		System.out.print(n.data + " ");
 	}
 	
+	void initMarks() {
+		for (Node n : nodes) {
+			n.marked = false;
+		}
+	}
+	
+	boolean search(int i1, int i2) {
+		return search(nodes[i1], nodes[i2]);
+	}
+	
+	boolean search(Node start, Node end) {
+		initMarks();
+		LinkedList<Node> q = new LinkedList<Node>();
+		q.add(start);
+		while(!q.isEmpty()) {
+			Node root = q.removeFirst();
+			if(root == end) {
+				return true;
+			}
+			for (Node n : root.adjacent) {
+				if(n.marked == false) {
+					n.marked = true;
+					q.add(n);
+				}
+			}
+		}
+		return false;
+	}
+	
 }
 /*
  ---------------------------------------
@@ -114,13 +143,14 @@ public class DfsAndBfsTest {
 		g.addEdge(2, 4);
 		g.addEdge(2, 3);
 		g.addEdge(3, 4);
-		g.addEdge(3, 5);
+//		g.addEdge(3, 5);
 		g.addEdge(5, 6);
 		g.addEdge(5, 7);
 		g.addEdge(6, 8);
 //		g.dfs();
 //		g.bfs();
-		g.dfsR(3);
+//		g.dfsR(3);
+		System.out.println(g.search(1, 8));
 	}
 
 }
