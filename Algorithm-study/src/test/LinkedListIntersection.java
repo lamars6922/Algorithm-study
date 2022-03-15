@@ -17,9 +17,9 @@ public class LinkedListIntersection {
 		
 		Node m1 = new Node(1);
 		Node m2 = m1.addNext(2);
-		Node m3 = m1.addNext(3);
-		Node m4 = m1.addNext(4);
-		Node m5 = m1.addNext(6);
+		Node m3 = m2.addNext(3);
+		Node m4 = m3.addNext(4);
+		Node m5 = m4.addNext(6);
 		n1.retrieve();
 		m1.retrieve();
 		
