@@ -127,7 +127,7 @@ class Graph {
         0
        /
       1 -- 3    7
-      |   /|\  /
+      |   /| \ /
       |  / |  5
       2 -- 4   \
                6 -- 8
@@ -143,7 +143,7 @@ public class DfsAndBfsTest {
 		g.addEdge(2, 4);
 		g.addEdge(2, 3);
 		g.addEdge(3, 4);
-//		g.addEdge(3, 5);
+		g.addEdge(3, 5);
 		g.addEdge(5, 6);
 		g.addEdge(5, 7);
 		g.addEdge(6, 8);

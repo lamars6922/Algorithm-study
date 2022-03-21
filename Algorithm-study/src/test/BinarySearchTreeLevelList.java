@@ -2,7 +2,17 @@ package test;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+/*
+             4
+            / \
+           /   \
+          /     \
+         1       7
+        / \     / \
+       0   2    5  8
+            \    \  \
+            3     6   9
+ */
 class BinaryTree {
 	class Node {
 		int data;
@@ -13,11 +23,14 @@ class BinaryTree {
 		}
 	}
 	Node root;
-	
+	int size;
 	BinaryTree (int size) {
+		this.size = size;
 		root = makeBST(0, size-1);
-		root.right.right.right.right = new Node(10); // UnBalanced를 트리를 만들기 위함.
-		root.right.right.left = new Node(11);
+//		root.right.right.right.right = new Node(10); // UnBalanced를 트리를 만들기 위함.
+//		root.right.right.left = new Node(11);
+//		root.right.right.right.left = new Node(10);
+//        this.size++;
 	}
 	
 	Node makeBST(int start, int end) {
@@ -117,7 +130,58 @@ class BinaryTree {
 		checkBalanced(node.left, obj, level + 1);
 		checkBalanced(node.right, obj, level + 1);
 	}
+	boolean isValidateBST1() { //주어진 트리가 이진검색트리인지 확인하기
+		int[] array = new int[size];
+		inorder(root, array);
+		for(int i = 1; i < array.length; i++) {
+			if(array[i] < array[i-1]) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
+	int index = 0;
+	
+	void inorder(Node root, int[] array) {
+		if(root != null) {
+			inorder(root.left, array);
+			array[index] = root.data;
+			index++;
+			inorder(root.right, array);
+		}
+	}
+	
+	Integer last_printed = null;
+	boolean isValidateBST2() {
+		return isValidateBST2(root);
+	}
+	boolean isValidateBST2(Node n) {
+		if(n == null) return true;
+		if(!isValidateBST2(n.left)) return false;
+		if(last_printed != null && n.data < last_printed) {
+			return false;
+		}
+		last_printed = n.data;
+		if(!isValidateBST2(n.right)) return false;
+		return true;
+			
+	}
+	boolean isValidateBST3() {
+		return isValidateBST3(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	}
+	boolean isValidateBST3(Node n, int min, int max) {
+		if(n == null) {
+			return true;
+		}
+		if(n.data < min || n.data > max) {
+			return false;
+		}
+		if(!isValidateBST3(n.left, min, n.data) || !isValidateBST3(n.right, n.data, max)) {
+			return false;
+		}
+		return true;
+	}
 }
 public class BinarySearchTreeLevelList {
 	public static void main(String[] args) {
