@@ -63,6 +63,7 @@ public class NextBSTSearch {
 		t.findNext(t.root);
 		t.findNext(t.root.left.left);
 		t.findNext(t.root.right.left.right);
+		t.findNext(t.root.right.right.right);
 	}
 
 }
