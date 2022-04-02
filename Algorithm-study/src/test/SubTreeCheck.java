@@ -26,9 +26,9 @@ class Tree3 {
 		return subTree(t1, t2);
 	}
 	boolean subTree(Node t1, Node t2) {
-		if(t1 == null) {
+		if(t1 == null) { // 끝까지 가서 찾았는데 없었다.
 			return false;
-		} else if (t1.data == t2.data && matchTree(t1, t2)) {
+		} else if (t1.data == t2.data && matchTree(t1, t2)) { // 같은 값이 있으면 이후의 트리가 같은지 검사
 			return true;
 		}
 		return subTree(t1.left, t2) || subTree(t1.right, t2);
